@@ -4,7 +4,6 @@ import api from "../api";
 const state = ()=>{
 return{
  weather__forecast:{},
- key : "3bee748c60ba0aa83237e5482f0f932d",
  error:"",
  city:""
 }
