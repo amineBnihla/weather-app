@@ -34,14 +34,14 @@ const actions = {
   removeErrorMsg({commit}){
    commit('REMOVE_ERROR_MSG');
   },
- getForecast({state,commit,dispatch},city) {
-  api.get(`geo/1.0/direct?q=${city}&appid=${state.key}`).then(({ data }) => {
+ getForecast({commit,dispatch},city) {
+  api.get(`geo/1.0/direct?q=${city}&appid=${import.meta.env.VITE_API_KEY}`).then(({ data }) => {
     
   if(data.length> 0){
     commit("SET_CITY_NAME",{city:data[0].name,country:data[0].country});
      api
       .get(
-        `data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&exclude=minutely,alerts&appid=${state.key}&units=metric`
+        `data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&exclude=minutely,alerts&appid=${import.meta.env.VITE_API_KEY}&units=metric`
       )
       .then(({ data }) => {
      commit('SET_WEATHER_FORECAST',data);
