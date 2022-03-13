@@ -33,7 +33,7 @@ return `${newTime.getHours()<10 ? `0${newTime.getHours()}`: newTime.getHours()}:
 }
 
 export const getIcon= (iconTitle)=>{
-  let imgSrc = `@/assets/icons/${iconTitle}.svg`;
+  let imgSrc = require(`@/assets/icons/${iconTitle}.svg`) ;
   
- return require(imgSrc);
+ return imgSrc;
 }
