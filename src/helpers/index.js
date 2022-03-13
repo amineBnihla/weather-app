@@ -35,34 +35,5 @@ return `${newTime.getHours()<10 ? `0${newTime.getHours()}`: newTime.getHours()}:
 export const getIcon= (iconTitle)=>{
   let imgSrc = `src/assets/icons/${iconTitle}.svg`;
   
-   /*  switch(iconTitle){
-        case "scattered clouds" :
-          imgSrc =  '../assets/icons/cloudy.svg';
-            break;
-        case "clear sky" :
-          imgSrc =  '../assets/icons/sunny.svg';
-            break;
-        case "broken clouds" :
-          imgSrc =  '../assets/icons/sunny.svg';
-            break;
-        case "shower rain" :
-          imgSrc =  '../assets/icons/sunny.svg';
-            break;
-        case "rain" :
-          imgSrc =  '../assets/icons/sunny.svg';
-            break;
-        case "	thunderstorm" :
-          imgSrc =  '../assets/icons/sunny.svg';
-            break;
-        case "snow" :
-          imgSrc =  '../assets/icons/sunny.svg';
-            break;
-        case "mist" :
-          imgSrc =  '../assets/icons/sunny.svg';
-            break;
-        default:
-        imgSrc ='../assets/icons/cloudy.svg';
-
-    } */
-    return imgSrc;
+ return imgSrc;
 }
