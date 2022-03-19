@@ -1,9 +1,14 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
-import ForcastCard from "../components/forecast-card.vue";
+import { defineAsyncComponent } from "vue";
+import ForcastCardSkeleton from "../components/suspense/forecast-card-skeleton.vue";
 import TodayForcastCard from "../components/today-forecast-card.vue";
 import NextForcastItem from "../components/next-forecast-item.vue";
+
+const ForecastCard = defineAsyncComponent(() =>
+  import("../components/forecast-card.vue")
+);
 const store = useStore();
 const city = ref("agadir");
 const getForecast = () => store.dispatch("getForecast", city.value);
@@ -27,7 +32,15 @@ onMounted(() => {
     id="home"
   >
     <div class="container flex justify-center items-center flex-col gap-9">
-      <ForcastCard class="w-72" />
+      <Suspense>
+        <template #default>
+          <ForecastCard class="w-72" />
+        </template>
+        <template #fallback>
+          <ForcastCardSkeleton class="w-72" />
+        </template>
+      </Suspense>
+
       <div class="search__input">
         <div class="relative">
           <input

@@ -2,6 +2,7 @@
 import { useStore } from "vuex";
 import { computed } from "vue";
 import { getDate, getIcon } from "../helpers";
+import ImgLoad from "../components/img-load.vue";
 const store = useStore();
 const daily = computed(() => store.getters.daily);
 console.log(daily);
@@ -14,10 +15,9 @@ console.log(daily);
       :key="index"
     >
       <span class="text-sm min-w-[112px]">{{ getDate(day.dt, false) }}</span>
-      <img
-        :src="getIcon(day.weather[0].main)"
-        :alt="day.weather[0].description"
-        class="w-10 h-10"
+      <ImgLoad
+        :source="getIcon(day.weather[0].main)"
+        :alternative="day.weather[0].description"
       />
       <span class="text-base">{{ Math.round(day.temp.day) }}°</span>
     </li>

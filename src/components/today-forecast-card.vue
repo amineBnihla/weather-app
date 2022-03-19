@@ -2,6 +2,7 @@
 import { useStore } from "vuex";
 import { computed } from "vue";
 import { getTime, getIcon } from "../helpers";
+import ImgLoad from "../components/img-load.vue";
 const store = useStore();
 const hourly = computed(() => store.getters.hourly);
 </script>
@@ -28,9 +29,9 @@ const hourly = computed(() => store.getters.hourly);
     >
       <span class="text-base">{{ Math.round(hour.temp) }}°</span>
       <span class="flex justify-center">
-        <img
-          :src="getIcon(hour.weather[0].main)"
-          :alt="hour.weather[0].description"
+        <ImgLoad
+          :source="getIcon(hour.weather[0].main)"
+          :alternative="hour.weather[0].description"
         />
       </span>
 
