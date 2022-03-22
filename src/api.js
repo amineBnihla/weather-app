@@ -1,7 +1,16 @@
 import axios from "axios";
 
-const api = axios.create({
-baseURL:"http://api.openweathermap.org/",
-})
 
-export default api;
+
+export default ()=>{
+  if(import.meta.env.PROD){
+   return  axios.create({
+baseURL:"/api/",
+})  
+  }else{
+    return  axios.create({
+baseURL:"http://api.openweathermap.org/",
+})  
+  }
+
+};

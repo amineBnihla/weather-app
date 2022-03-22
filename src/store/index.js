@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import axios from "axios";
+import api from "../api";
 
 const state = ()=>{
 return{
@@ -35,13 +35,13 @@ const actions = {
    commit('REMOVE_ERROR_MSG');
   },
  getForecast({commit,dispatch},city) {
-  axios.get(`/api/geo/1.0/direct?q=${city}&appid=${import.meta.env.VITE_API_KEY}`).then(({ data }) => {
+  api().get(`geo/1.0/direct?q=${city}&appid=${import.meta.env.VITE_API_KEY}`).then(({ data }) => {
     
   if(data.length> 0){
     commit("SET_CITY_NAME",{city:data[0].name,country:data[0].country});
-     axios
+     api()
       .get(
-        `/api/data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&exclude=minutely,alerts&appid=${import.meta.env.VITE_API_KEY}&units=metric`
+        `data/2.5/onecall?lat=${data[0].lat}&lon=${data[0].lon}&exclude=minutely,alerts&appid=${import.meta.env.VITE_API_KEY}&units=metric`
       )
       .then(({ data }) => {
      commit('SET_WEATHER_FORECAST',data);
